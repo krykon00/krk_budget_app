@@ -188,6 +188,7 @@ with st.container():
                 sub_df = sub_df.head(top_n_bar_units)
             show_bar_fn = bar.get_bar_by_types_opt if top_n_bar_units else bar.get_bar_by_units_opt
             st_echarts(
+                height="500px",
                 options=show_bar_fn(
                     title=newest_values,
                     x=list(sub_df["Jednostka"]),

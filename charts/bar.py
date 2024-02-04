@@ -12,9 +12,14 @@ def get_bar_by_units_opt(
     title: str,
     y_label: str,
     legend: Optional[list[str]] = None,
-    show_x_labels:bool = False
 ) -> dict:
     options = {
+        "grid": {
+            "bottom": '25%',
+            "left": "2%",
+            "right": "2%",
+            "containLabel": False,
+        },
         "backgroundColor": _background_color,
         "title": {
             "text": title,
@@ -31,7 +36,9 @@ def get_bar_by_units_opt(
             "type": "category",
             "data": x,
             "axisLabel": {
-                "show": show_x_labels,
+                "show": True,
+                "rotate": 45,
+                "color": _title_color,
             },
         },
         "yAxis": {
@@ -65,9 +72,14 @@ def get_bar_by_types_opt(
     title: str,
     y_label: str,
     legend: Optional[list[str]] = None,
-    show_x_labels:bool = False
 ) -> dict:
     options = {
+        "grid": {
+            "bottom": '25%',
+            "left": "2%",
+            "right": "2%",
+            "containLabel": False,
+        },
         "backgroundColor": _background_color,
         "title": {
             "text": title,
@@ -84,7 +96,10 @@ def get_bar_by_types_opt(
             "type": "category",
             "data": x,
             "axisLabel": {
-                "show": show_x_labels,
+                "show": True,
+                "rotate": 45,
+                "fontSize": 8,
+                "color": _title_color,
             },
         },
         "yAxis": {
