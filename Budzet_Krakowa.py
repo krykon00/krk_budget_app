@@ -123,6 +123,16 @@ with st.container():
             nazwy_przychodow = list(df_przychody["Nazwa"])
             series = []
             for idx, name in enumerate(nazwy_przychodow):
+                if name == "Kredyt":
+                    series.append(
+                        {
+                            "name": name, 
+                            "data": [float(df_przychody[year].loc[idx]) for year in years_list],
+                            "color": "#F1D00A", 
+                            "up": "#d90429",
+                            "down": "#588157",
+                        })
+                    continue
                 series.append(
                     {
                         "name": name, 

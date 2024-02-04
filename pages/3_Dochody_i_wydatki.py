@@ -104,7 +104,7 @@ with st.container():
                 options=line.get_totals_chart_expe_inco_opt(
                     x=years_list,
                     series=series,
-                    title="Plowane dochody i przychody gminy",
+                    title="Planowane dochody i przychody gminy",
                     y_label="PLN",
                     legend=["Dochody ogółem", "Wydatki ogółem"]
             ))
@@ -117,7 +117,7 @@ with st.container():
                 options=line.get_totals_chart_expe_inco_opt(
                     x=years_list,
                     series=series,
-                    title="Plowane dochody i przychody powiatu",
+                    title="Planowane dochody i przychody powiatu",
                     y_label="PLN",
                     legend=["Dochody ogółem", "Wydatki ogółem"]
             ))

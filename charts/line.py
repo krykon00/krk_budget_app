@@ -75,6 +75,12 @@ def get_line_units_opt(
     legend: Optional[list[str]] = None,
 ) -> dict:
     options = {
+        "grid": {
+            "bottom": '25%',
+            "left": "2%",
+            "right": "2%",
+            "containLabel": True,
+        },
         "backgroundColor": _background_color,
         "title": {
             "text": title,
@@ -121,7 +127,12 @@ def get_line_units_opt(
         ],
     }
     if legend:
-        options["legned"] = {"data": legend}
+        options["legend"] = {
+            "data": legend,
+            "bottom": 2,
+            "textStyle": {"color": _title_color}
+
+        }
 
     return options
 
@@ -134,6 +145,11 @@ def get_subunits_opt(
     legend: Optional[list[str]] = None,
 ) -> dict:
     options = {
+        "grid": {
+            "left": '2%',
+            "right": '20%',
+            "containLabel": True,
+        },
         "backgroundColor": _background_color,
         "title": {
             "text": title,
@@ -182,7 +198,9 @@ def get_subunits_opt(
     if legend:
         options["legend"] = {
                 "data": legend,
-                "bottom": 0,
+                "right": 10,
+                "top": "center",
+                "orient": "vertical",
                 "textStyle": {"color": _title_color}
             }
 
@@ -272,5 +290,3 @@ def get_totals_chart_expe_inco_opt(
         }
 
     return options
-
-

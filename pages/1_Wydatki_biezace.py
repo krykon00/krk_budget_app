@@ -136,16 +136,31 @@ with st.container():
         )
     with st.container():
         st.markdown("### Wykres liniowy wydatków na jednostki budżetowe")
-        st_echarts(
-            height="500px",
-            options=line.get_line_units_opt(
-                title="Wydatki na bieżące zadania na jednostkę",
-                x=list(dfs.keys()),
-                y_label="PLN",
-                series=df_to_series(df_unit_totals),
-                legend=list(df_unit_totals["Jednostka"]),
-            ),
-        )
+        unit_totals_plot_col, unit_totals_ctrl_col = st.columns([5,1])
+        with unit_totals_ctrl_col:
+            st.markdown("##### Filtry wykresu jednostek:")
+            utpc_radio_sort = st.radio(
+                label="Sortowanie alfabetyczne",
+                options=["Rosnoąco", "Malejąco"],
+                index=0,
+            )
+            top_n_lines_units = st.slider(
+                label="Top n wartości" , min_value=1, max_value=25, value=10, step=1
+            )
+        with unit_totals_plot_col:
+            sub_totals_sort = False if utpc_radio_sort == "Malejąco" else True
+            df_units_sorted = df_unit_totals.sort_values(
+                by="Jednostka", ascending=sub_totals_sort).head(top_n_lines_units)
+            st_echarts(
+                height="600px",
+                options=line.get_line_units_opt(
+                    title=f"Top {top_n_lines_units} alfabetycznie jednostek i ich budżet na bieżące zadana",
+                    x=list(dfs.keys()),
+                    y_label="PLN",
+                    series=df_to_series(df_units_sorted),
+                    legend=list(df_units_sorted["Jednostka"]),
+                ),
+            )
     with st.container():
         st.markdown(
             "#### Wykres słupkowy wydatków na jednostkę budżetową najaktualniejszego budżetu:"
@@ -206,15 +221,15 @@ with st.container():
             )
         df_subunits.drop(columns=["Wydatki na zadania ogółem"], inplace=True)
         df_subunits.fillna(0, inplace=True)
+        df_subunits = df_subunits[(df_subunits[list(df_subunits.columns)[1:]] > 0).all(axis=1)]
         with chart_subunits_col:
             st_echarts(
-                height="500px",
+                height="700px",
                 options=line.get_subunits_opt(
                     title=f"Zadania jed.: {subunit_selection}",
                     x=list(dfs.keys()),
                     y_label="PLN",
                     series=df_to_series(df_subunits),
-                    legend=list(df_subunits["Nazwa zadania"]),
+                    legend=[str(n)[:50] for n in list(df_subunits["Nazwa zadania"])],
                 ),
             )
-
