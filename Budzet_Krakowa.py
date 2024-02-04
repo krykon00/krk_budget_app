@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 _f_path = Path(__file__).resolve().parents[1]  # app catalog path
-data_path = f"{_f_path}/app/data/budget"
+data_path = f"{_f_path}/krk_budget_app/data/budget"
 df_dochody = pd.read_csv(f"{data_path}/dochody.csv")
 df_przychody= pd.read_csv(f"{data_path}/przychody.csv")
 df_wydatki = pd.read_csv(f"{data_path}/wydatki.csv")
