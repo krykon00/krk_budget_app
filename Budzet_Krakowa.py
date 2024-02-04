@@ -16,10 +16,10 @@ st.set_page_config(
 
 _f_path = Path(__file__).resolve().parents[1]  # app catalog path
 data_path = f"{_f_path}/app/data/budget"
-df_dochody = pd.read_excel(f"{data_path}/data.xlsx", sheet_name="Dochody")
-df_przychody= pd.read_excel(f"{data_path}/data.xlsx", sheet_name="Przychody")
-df_wydatki = pd.read_excel(f"{data_path}/data.xlsx", sheet_name="Wydatki")
-df_rozchody = pd.read_excel(f"{data_path}/data.xlsx", sheet_name="Rozchody")
+df_dochody = pd.read_csv(f"{data_path}/dochody.csv")
+df_przychody= pd.read_csv(f"{data_path}/przychody.csv")
+df_wydatki = pd.read_csv(f"{data_path}/wydatki.csv")
+df_rozchody = pd.read_csv(f"{data_path}/rozchody.csv")
 dfs_list = [df_dochody, df_przychody, df_wydatki, df_rozchody]
 years_list = sorted(list(df_dochody.columns)[1:])
 
